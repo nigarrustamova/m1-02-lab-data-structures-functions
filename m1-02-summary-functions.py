@@ -60,3 +60,19 @@ def escalation_metrics(data):
         'by_category' : cat_rates,
         "category_counts": cat_total
     }
+
+def package_final_report(avg_res, cust_counts, esc_metrics, data_len):
+    report = {
+        "report_metadata": {
+            "total_records_processed": data_len,
+            "unique_customers": len(cust_counts)
+        },
+        "resolution_metrics": {
+            "avg_time_by_category": avg_res
+        },
+        "escalation_metrics": {
+            "overall_rate": esc_metrics['overall_rate'],
+            "rate_by_category": esc_metrics['by_category']
+        }
+    }
+    return report
